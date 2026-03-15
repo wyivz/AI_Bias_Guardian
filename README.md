@@ -2,6 +2,21 @@
 
 A command-line interface (CLI) tool that audits text for bias using generative AI. It detects biased language in user inputs and AI-generated responses, highlights problematic content, and provides options for regeneration to ensure fair and unbiased communication.
 
+This is a project inspired by the following case study material.
+
+## 🤖 Case Study: AI Bias
+“You are what you eat” might not apply to humans, but it absolutely holds true for AI. Every AI system is enormously influenced by the data it was trained on, as well as the users it interacts with. Biases that are present in either the training data or in the human overseers will often result in those same biases reflected in the trained AI model. Moreover, AI systems are also prone to developing their own biases throughout training and production — like [xAI Grok’s infamous meltdown on Twitter (X) in 2025](https://www.npr.org/2025/07/09/nx-s1-5462609/grok-elon-musk-antisemitic-racist-content), which resulted from a catastrophic combination of xAI founder Elon Musk’s own personal biases entering Grok’s training, and a feedback loop online where Twitter users encouraged Grok to become more and more extreme.
+
+Biases can also be much more subtle in systems that seem much more innocent. With the prevalence of AI today, AI systems are now used for [classifying images](http://gendershades.org/overview.html), [algorithmically deciding what content you’ll watch](https://pmc.ncbi.nlm.nih.gov/articles/PMC11373151/), and even [choosing the best job applicant](https://www.canada.ca/en/public-service-commission/services/appointment-framework/guides-tools-appointment-framework/ai-hiring-process.html). In these cases, the subtle biases in the AI will often reinforce stereotypes, gender inequality, discrimination, and misrepresentation. 
+
+<mark>Your challenge is to create something that makes AI fairer and more inclusive — whether that’s a tool that detects when bias occurs, a resource that helps users understand where and how bias happens, or a way of reducing or correcting for AI bias.</mark>
+
+Further reading:
+[Biases in AI: acknowledging and addressing the inevitable ethical issues ](https://pmc.ncbi.nlm.nih.gov/articles/PMC12405166/)
+[When AI Amplifies the Biases of Its Users](https://hbr.org/2026/01/when-ai-amplifies-the-biases-of-its-users)
+The [Gender Shades project](http://gendershades.org/overview.html)
+The [Algorithmic Justice League](https://www.ajl.org/)
+
 ## Features
 
 - **Pre-Response Bias Detection**: Scans user input for potential bias before generating an AI response, displaying a bias score and warnings.
