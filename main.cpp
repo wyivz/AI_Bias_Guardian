@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-// 如果是 Windows 系统，需要包含此头文件来开启 ANSI 颜色支持
+//Windows console color support
 #ifdef _WIN32
 #include <windows.h>
 #ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
@@ -18,7 +18,7 @@
 using namespace std;
 
 int main() {
-// --- Windows 兼容性处理 ---
+// Enable ANSI escape codes on Windows for colored output
 #ifdef _WIN32
   HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
   DWORD dwMode = 0;
@@ -29,21 +29,21 @@ int main() {
   GenAIClient genai;
   BiasAuditor auditor;
 
-  cout << "\033[1;36mGenAI Bias Auditor CLI\033[0m\n";  // 青色标题
-  cout << "Set OPENAI_API_KEY in your environment before running.\n";
+  cout << "\033[1;36mGenAI Bias Auditor CLI\033[0m\n";
 
   while (true) {
-    cout << "\n\033[1;32mUser > \033[0m";  // 绿色提示符
+    cout << "\n\033[1;32mUser > \033[0m";
     string user_input;
     if (!std::getline(cin, user_input)) break;
 
     if (user_input == "exit") break;
 
-    // 1. 检测用户输入的 bias
+    //Detect bias in user input
     AuditResult audit_result = auditor.audit(user_input);
     float bias_score = audit_result.biases.size() * 20.0f;
 
-    // 格式化输出分数
+    //Initialize formatter with bias score
+    Formatter formatter(bias_score);
     cout << "Bias Rate Score: " << (bias_score > 100 ? 100 : bias_score) << "%"
          << endl;
 
@@ -56,16 +56,16 @@ int main() {
       }
     }
 
-    // 2. 生成 AI 回复
+    //Generate AI response
     string ai_output = genai.generate(user_input);
 
-    // 3. 检测 AI 输出的 bias
+    //Detect bias in AI response
     AuditResult result = auditor.audit(ai_output);
 
     if (result.bias_detected) {
       cout << "\n\033[1;31m[!] Bias detected in AI response:\033[0m\n";
 
-      // 调用高亮函数
+      // Highlight the biased spans in the AI response
       string highlighted = highlight_bias(ai_output, result);
       cout << "Response: " << highlighted << endl;
 
